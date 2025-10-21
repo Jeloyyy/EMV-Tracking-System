@@ -4,7 +4,7 @@
 @section('content')
 <h1>EMPLOYEE INFORMATION</h1>
 
-<form method="GET" action="{{ route('users.resortStaffsTable') }}" class="mb-3 d-flex">
+<form method="GET" action="{{ route('users.resortStaffsTable') }}">
     <input type="text" name="search" class="form-control search" placeholder="Search ..." value="{{ request('search') }}">
     <button type="submit" class="add-btn">Search</button>
 </form>

@@ -4,7 +4,7 @@
 @section('content')
 <h1>EMPLOYEE INFORMATION</h1>
 
-<form method="GET" action="{{ route('users.resortStaffs') }}" class="mb-3 d-flex">
+<form method="GET" action="{{ route('users.resortStaffs') }}">
     <input type="text" name="search" class="form-control search" placeholder="Search ..." value="{{ request('search') }}">
     <button type="submit" class="add-btn">Search</button>
 </form>
@@ -38,13 +38,13 @@
                 </td>
 
                 <td class="action-buttons">
-                    <button class="btn btn-sm btn-outline-warning me-1" onclick="window.location='{{ route('users.edit', $user->id) }}'">
+                    <button class="btn-outline-warning me-1" onclick="window.location='{{ route('users.edit', $user->id) }}'">
                         Edit
                     </button>
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
+                    <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-danger"
+                        <button type="submit" class="btn-outline-danger"
                                 onclick="return confirm('Are you sure you want to delete all this data?')">Delete</button>
                     </form>
                 </td>

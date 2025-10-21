@@ -28,24 +28,26 @@ Route::middleware('auth')->group(function () {
     Route::view('/contact', 'contact')->name('contact');
     Route::view('/settings', 'settings')->name('settings');
 
-    Route::get('/users', [UserController::class, 'resortStaffs'])->name('users.resortStaffs');
-    Route::get('/users/table', [UserController::class, 'resortStaffsTable'])->name('users.resortStaffsTable');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::get('/users/adduser', [UserController::class, 'create'])->name('users.create');
-    Route::get('/supplies', [UserController::class, 'supplies'])->name('users.supplies');
-    Route::get('/issued-supplies', [UserController::class, 'issuedSupplies'])->name('users.issuedSupplies');
-    Route::get('/issuance', [UserController::class, 'issuance'])->name('users.issuance');
-    Route::get('/add-supplies', [UserController::class, 'addSupplies'])->name('users.addSupplies');
-
     Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
 
+    Route::get('/users/adduser', [UserController::class, 'create'])->name('users.create');
     Route::post('/users/adduser', [UserController::class, 'store'])->name('users.store');
-    Route::post('/supplies', [UserController::class, 'storeSupply'])->name('supplies.store');
-    Route::post('/issuance', [UserController::class, 'storeIssuance'])->name('issuance.store');
-    
+    Route::get('/users', [UserController::class, 'resortStaffs'])->name('users.resortStaffs');
+    Route::get('/users/table', [UserController::class, 'resortStaffsTable'])->name('users.resortStaffsTable');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
-
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    Route::get('/add-supplies', [UserController::class, 'addSupplies'])->name('users.addSupplies');
+    Route::get('/supplies', [UserController::class, 'supplies'])->name('users.supplies');
+    Route::post('/supplies', [UserController::class, 'storeSupply'])->name('supplies.store');
+    Route::get('/supplies/{id}/edit', [UserController::class, 'editSupply'])->name('supplies.edit');
+    Route::put('/supplies/{id}/update', [UserController::class, 'updateQuantity'])->name('supplies.updateQuantity');
+    Route::delete('/supplies/{id}', [UserController::class, 'destroySupply'])->name('supplies.destroy');
+
+    Route::get('/issued-supplies', [UserController::class, 'issuedSupplies'])->name('users.issuedSupplies');
+    Route::get('/issuance', [UserController::class, 'issuance'])->name('users.issuance');
+    Route::post('/issuance', [UserController::class, 'storeIssuance'])->name('issuance.store');
 });

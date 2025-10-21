@@ -14,6 +14,23 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function editProfile()
+    {
+        return view('profile.edit');
+    }
+    public function issuance()
+    {
+        return view('Users.issuance');
+    }
+    public function addSupplies()
+    {
+        return view('Users.addSupplies');
+    }
+    public function create()
+    {
+        $departments = Department::all();
+        return view('adduser', compact('departments'));
+    }
     public function resortStaffs(Request $request)
     {
         $query = User::query();
@@ -46,7 +63,6 @@ class UserController extends Controller
         $departments = Department::all();
         return view('Users.edit', compact('users', 'departments'));
     }
-
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -75,7 +91,6 @@ class UserController extends Controller
 
         return redirect()->route('users.resortStaffs')->with('success', 'User updated successfully.');
     }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -100,12 +115,6 @@ class UserController extends Controller
 
         return redirect()->route('users.resortStaffs')->with('success', 'User created successfully.');
     }
-    public function create()
-    {
-        $departments = Department::all();
-        return view('adduser', compact('departments'));
-    }
-
     public function destroy($id)
     {
         $users = User::findOrFail($id);
@@ -114,7 +123,6 @@ class UserController extends Controller
             ->route('users.resortStaffs')
             ->with('success', 'User deleted successfully.');
     }
-
     public function supplies(Request $request)
     {
         $query = Supply::query();
@@ -128,7 +136,6 @@ class UserController extends Controller
 
         return view('Users.supplies', compact('supplies'));
     }
-
     public function storeSupply(Request $request)
     {
         $request->validate([
@@ -147,7 +154,6 @@ class UserController extends Controller
 
         return redirect()->route('users.supplies')->with('success', 'Supply added.');
     }
-
     public function resortStaffsTable(Request $request)
     {
         $query = User::query();
@@ -195,7 +201,6 @@ class UserController extends Controller
 
         return view('Users.issuedSupplies', compact('issuedSupplies'));
     }
-
     public function storeIssuance(Request $request)
     {
         $request->validate([
@@ -229,7 +234,6 @@ class UserController extends Controller
 
         return redirect()->route('users.issuedSupplies')->with('success', 'Supply issued.');
     }
-
     public function showProfile()
     {
         $user = auth()->user();
@@ -263,18 +267,28 @@ class UserController extends Controller
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
     }
-    public function editProfile()
+    public function editSupply($id)
     {
-        return view('profile.edit');
+        $supply = Supply::findOrFail($id);
+        return view('Users.editSupply', compact('supply'));
     }
-    public function issuance()
+    public function updateQuantity(Request $request, $id)
     {
-        return view('Users.issuance');
-    }
-    public function addSupplies()
-    {
-        return view('Users.addSupplies');
-    }
+        $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
 
+        $supply = Supply::findOrFail($id);
+        $supply->quantity += $request->quantity;
+        $supply->save();
 
+        return redirect()->route('users.supplies')->with('success', 'Quantity updated.');
+    }
+    public function destroySupply($id)
+    {
+        $supply = Supply::findOrFail($id);
+        $supply->delete();
+
+        return redirect()->route('users.supplies')->with('success', 'Supply deleted.');
+    }
 }
