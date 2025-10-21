@@ -1,0 +1,700 @@
+:root {
+    --primary: #172da4;
+    --primary-hover: #06114f;
+    --danger: #fe1f2d;
+    --danger-hover: #4f0303;
+    --success: #28a745;
+    --secondary: #6c757d;
+    --light: #f5f5f5;
+    --text-dark: #222;
+    --text-muted: #555
+}
+
+body.dark-mode {
+    background: linear-gradient(to right, #181818, #232526);
+    color: #000
+}
+
+body.dark-mode .navbar,
+body.dark-mode .sidebar {
+    background-color: #222;
+    color: #fff
+}
+
+body.dark-mode footer {
+    background-color: #222;
+    color: #eee
+}
+
+body.dark-mode table {
+    background-color: #222;
+    color: #eee
+}
+
+body.dark-mode th {
+    background-color: #333;
+    color: #fff
+}
+
+body.dark-mode td {
+    background-color: #222;
+    color: #eee
+}
+
+body.dark-mode main {
+    background-color: #686767
+}
+
+body.dark-mode .sidebar-toggle {
+    background-color: #222;
+    color: #fff
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #92d8e9;
+    color: #333
+}
+
+body .login-wrapper {
+    display: flex;
+    min-height: 75vh
+}
+
+.login-wrapper {
+    min-height: 75vh;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    display: flex;
+    background-image: url(/bg/BACKGROUND.jpg);
+    background-size: cover;
+    border-radius: 10px
+}
+
+.login-card {
+    width: 50vh;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #0000001a;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.login-card:hover {
+    box-shadow: 0 0 15px #00000026
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #fd7e14;
+    font-weight: 600;
+    font-size: 1.25rem
+}
+
+.login-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.login-card .form-check {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin-top: .5rem
+}
+
+.login-card .form-check-label {
+    margin-bottom: 0
+}
+
+.form-label {
+    margin-bottom: 1rem
+}
+
+.form-control {
+    padding: .75rem 1rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out
+}
+
+.form-control:focus {
+    border-color: #fd7e14;
+    box-shadow: 0 0 0 .2rem #fd7e1440
+}
+
+.form-check-input {
+    margin-top: .3rem
+}
+
+.btn-primary {
+    padding: .75rem;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: var(--primary);
+    border: none;
+    color: #fff;
+    transition: background-color .2s ease-in-out;
+    margin: auto;
+    padding-bottom: 10px
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 30px;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #426b94;
+    color: #fff;
+    z-index: 1000;
+    box-shadow: 0 2px 4px #0000001a
+}
+
+.navbar-brand {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 10px
+}
+
+.navbar-menu {
+    position: relative;
+    display: inline-block
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+.sidebar-container {
+    position: relative
+}
+
+.sidebar-toggle {
+    background-color: #426b94;
+    color: #fff;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 4px
+}
+
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 220px;
+    height: calc(100% - 60px);
+    background-color: #2c3e50;
+    padding: 20px;
+    color: #fff;
+    transform: translate(0);
+    transition: transform .3s ease;
+    z-index: 1000
+}
+
+.sidebar.hidden {
+    display: none
+}
+
+.sidebar-container.collapsed .sidebar {
+    transform: translate(-100%)
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0
+}
+
+.sidebar li {
+    margin: 15px 0
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    display: block;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background .3s
+}
+
+.sidebar a:hover {
+    background-color: #34495e
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh
+}
+
+.layout-container {
+    flex: 1;
+    display: flex;
+    margin-top: 60px;
+    margin-left: 220px;
+    transition: margin-left .3s ease
+}
+
+.outside-container {
+    flex: 1;
+    display: flex;
+    margin-top: 60px;
+    transition: margin-left .3s ease
+}
+
+.sidebar-container.collapsed~.layout-container {
+    margin-left: 0
+}
+
+main {
+    flex: 1;
+    padding: 40px;
+    background-color: #92d8e9
+}
+
+footer {
+    background-color: #0d2f46;
+    text-align: center;
+    padding: 10px;
+    color: #f6f6f6;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 90%;
+    height: 6%
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 1.5rem
+    }
+
+    .login-title {
+        font-size: 1.1rem
+    }
+
+    .btn-primary {
+        font-size: 16px
+    }
+}
+
+.login-card .form-control {
+    margin-left: auto;
+    text-align: auto;
+    width: 100%
+}
+
+.register-wrapper {
+    min-height: 75vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    background-image: url(/bg/BACKGROUND.jpg);
+    background-size: cover;
+    border-radius: 10px
+}
+
+.register-card {
+    width: 100%;
+    max-width: 80vh;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #0000001a;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.register-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #2600ff;
+    font-weight: 750;
+    font-size: 1.5rem
+}
+
+.register-card .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    padding: .5rem
+}
+
+.menu-toggle {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    padding: .5rem 1rem;
+    transition: background .3s ease
+}
+
+.menu-toggle:hover {
+    background-color: #ffffff1a;
+    border-radius: 5px
+}
+
+.menu-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px #0000001a;
+    display: none;
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 1000;
+    padding: .5rem 0
+}
+
+.menu-dropdown a,
+.menu-dropdown button {
+    text-decoration: none;
+    padding: .5rem 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    width: 100%;
+    color: #333;
+    font-size: .95rem;
+    cursor: pointer;
+    transition: background .2s ease
+}
+
+.menu-dropdown a:hover,
+.menu-dropdown button:hover {
+    background-color: #6c757d
+}
+
+table {
+    background-color: #fff;
+    overflow: hidden;
+    width: 100%;
+    border-spacing: 0;
+    margin-top: 25px
+}
+
+th {
+    background-color: #0019f7;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+    height: 50px;
+    border: black solid 1px;
+    font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px
+}
+
+td {
+    vertical-align: middle;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    border: black solid 1px
+}
+
+td:hover {
+    background-color: #196dc2
+}
+
+tr:nth-child(2n) {
+    background-color: #a1a1a1
+}
+
+.row:hover {
+    background-color: #6bb5ff
+}
+
+.badge {
+    font-size: .85rem;
+    border-radius: 6px
+}
+
+.badge-active {
+    background-color: #28a745;
+    color: #fff;
+    padding: .4rem .75rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center
+}
+
+.badge-inactive {
+    background-color: #6c757d;
+    color: #fff;
+    padding: .4rem .75rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center
+}
+
+.btn-outline-warning {
+    background-color: #6f6fff;
+    color: #fff;
+    width: 70px;
+    height: 30px
+}
+
+.btn-outline-danger {
+    background-color: var(--danger);
+    color: #fff;
+    width: 70px;
+    height: 30px
+}
+
+.btn-outline-warning:hover {
+    background-color: #00f
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--danger-hover)
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px
+}
+
+.idto {
+    width: 40px
+}
+
+.text-orange {
+    color: #001aff
+}
+
+.edit-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem
+}
+
+.edit-card {
+    width: 100%;
+    max-width: 700px;
+    background-color: #4455a0;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #00000014;
+    gap: 1.5rem
+}
+
+.edit-card h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 1.5rem
+}
+
+.edit-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem
+}
+
+.edit-row input,
+.edit-row select {
+    flex-wrap: wrap;
+    width: 100%
+}
+
+.edit-row label {
+    color: #fff
+}
+
+.edit-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
+}
+
+.button-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: auto;
+    padding-left: 1rem;
+    margin-bottom: 1rem
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: .5rem
+}
+
+.form-control,
+.form-select {
+    padding: .75rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    transition: all .2s ease-in-out
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #172da4;
+    box-shadow: 0 0 0 .2rem #fd7e1440
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    font-weight: 600;
+    padding: .6rem 1.5rem;
+    border-radius: 8px;
+    height: 40px
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover)
+}
+
+.btn-secondary {
+    text-decoration: none;
+    background-color: #fe1f2d;
+    font-size: 16px;
+    font-family: default;
+    border: none;
+    font-weight: 600;
+    padding: .6rem 1.5rem;
+    border-radius: 8px;
+    color: #fff;
+    height: 40px;
+    text-align: center;
+    display: inline-block
+}
+
+.btn-secondary:hover {
+    background-color: #4f0303
+}
+
+.search {
+    width: 30em;
+    height: 40px
+}
+
+.add-btn {
+    background-color: #172da4;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    padding: .6rem 1.5rem;
+    border-radius: 8px;
+    height: 40px
+}
+
+.add-btn:hover {
+    background-color: #06114f
+}
+
+.sub-btn {
+    background-color: #172da4;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    height: 40px;
+    margin-top: 7px;
+    color: #fff;
+    display: block
+}
+
+pre {
+    margin-top: 2rem;
+    font-size: 20px;
+    font-family: Lucida Sans Typewriter, monospace;
+    background-color: #688db1;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto
+}
+
+.profile-photo {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #585757;
+    box-shadow: 0 4px 12px #00000026;
+    background-color: #000;
+    margin-bottom: 16px;
+    transition: transform .3s ease, box-shadow .3s ease
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px #0003
+}
+
+.profile-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px
+}
+
+.profile-card {
+    background-color: gray;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px #00000014
+}
+
+.card-header {
+    background-color: var(--light);
+    padding: 16px;
+    border-bottom: 1px solid #ddd
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--text-dark)
+}
+
+.profile-body {
+    padding: 24px;
+    text-align: center
+}
