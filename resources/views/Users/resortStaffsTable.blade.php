@@ -10,7 +10,6 @@
 </form>
 
 <div>
-    <div class="card-body">
     <table class="table">
         <thead>
             <tr>
@@ -43,6 +42,5 @@
             @endforelse
         </tbody>
     </table>
-    </div>
 </div>
 @endsection

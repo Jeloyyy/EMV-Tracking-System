@@ -26,6 +26,8 @@ class LoginController extends Controller
             $user = Auth::user();
             $user->last_login = now();
             $user->save();
+
+            session()->flash('show_welcome', true);
             return redirect()->intended('dashboard');
         }
 

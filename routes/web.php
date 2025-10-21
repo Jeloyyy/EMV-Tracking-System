@@ -21,8 +21,8 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 // Middlewares
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'resortStaffs'])->name('dashboard');
-    Route::get('/userDashboard', [DashboardController::class, 'resortStaffs'])->name('userDashboard');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/userDashboard', [DashboardController::class, 'userDashboard'])->name('userDashboard');
     
     Route::view('/about', 'about')->name('about');
     Route::view('/contact', 'contact')->name('contact');
@@ -50,4 +50,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/issued-supplies', [UserController::class, 'issuedSupplies'])->name('users.issuedSupplies');
     Route::get('/issuance', [UserController::class, 'issuance'])->name('users.issuance');
     Route::post('/issuance', [UserController::class, 'storeIssuance'])->name('issuance.store');
+
+    Route::get('/request-supplies', [UserController::class, 'requestSupplies'])->name('supply.request');
 });

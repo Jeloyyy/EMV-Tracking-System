@@ -291,4 +291,8 @@ class UserController extends Controller
 
         return redirect()->route('users.supplies')->with('success', 'Supply deleted.');
     }
+    public function requestSupplies()
+    {
+        return view('Users.requestSupply');
+    }
 }

@@ -672,6 +672,7 @@ pre {
 .profile-container {
     max-width: 600px;
     margin: 40px auto;
+    border-radius: 8px;
     padding: 20px
 }
 
@@ -685,7 +686,8 @@ pre {
 .card-header {
     background-color: var(--light);
     padding: 16px;
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px
 }
 
 .card-header h3 {
@@ -697,4 +699,32 @@ pre {
 .profile-body {
     padding: 24px;
     text-align: center
+}
+
+#welcome-msg.fade-out {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.dash-overview {
+    width: 45%;
+    height: 50vh;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #0000001a;
+    overflow-y: auto;
+}
+.dash-overview table {
+    border-radius: 10px;
+    overflow: hidden;
+    border-collapse: separate;
+    width: 100%;
+}
+.dash-overview thead {
+    position: sticky;
+    top: 0;
+    background-color: #212529;
+    z-index: 1;
 }

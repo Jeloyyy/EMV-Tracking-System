@@ -52,7 +52,7 @@
         ],
         [
             'title'=> 'Request Supplies',
-            'route'=> 'users.requests',
+            'route'=> 'supply.request',
             'roles'=> ['supervisor','user']
         ],
  //       [

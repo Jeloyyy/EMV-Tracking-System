@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Supply;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function resortStaffs()
+    public function dashboard()
     {
-        return view('dashboard');
+        $supplies = Supply::all();
+
+        return view('dashboard', compact('supplies'));
+    }
+        public function userDashboard()
+    {
+        $supplies = Supply::all();
+
+        return view('dashboard', compact('supplies'));
     }
 }
