@@ -56,7 +56,7 @@
                 <label for="profile_photo" class="form-label">Profile Photo (Optional)</label>
                 <input id="profile_photo" type="file" class="form-control" name="profile_photo" accept="image/*">
             </div>
-
+            
             <button type="submit" class="btn btn-primary sub-btn">Register</button>
         </form>
     </div>

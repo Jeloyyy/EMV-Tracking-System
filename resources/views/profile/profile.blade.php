@@ -11,7 +11,7 @@
                 alt="Profile Photo"
                 class="profile-photo">
             <h4>
-                {{ Auth::user()->first_name }}
+                {{ ucfirst(Auth::user()->first_name) }}
                 {{ Auth::user()->middle_name ? Auth::user()->middle_name : '' }}
                 {{ Auth::user()->last_name }}
                 {{ Auth::user()->ext_name ? ', ' . Auth::user()->ext_name : '' }}
