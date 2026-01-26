@@ -16,11 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (config('database.default') === 'sqlite' && app()->environment('local')) {
-            $dbPath = config('database.connections.sqlite.database');
-
-            if (!File::isAbsolutePath($dbPath)) {
-                $dbPath = database_path($dbPath);
-            }
+            $dbPath = base_path(config('database.connections.sqlite.database'));
 
             if (!File::exists($dbPath)) {
                 File::put($dbPath, '');
