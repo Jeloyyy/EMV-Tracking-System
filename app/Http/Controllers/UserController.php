@@ -6,7 +6,8 @@ use
 App\Models\User, 
 App\Models\Department, 
 App\Models\Supply, 
-App\Models\IssuedSupply;
+App\Models\IssuedSupply,
+App\Models\SupplyRequest;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -111,6 +112,7 @@ class UserController extends Controller
             'ext_name' => $request->input('ext_name'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
+            'stat' => 1, // Default active
         ]);
 
         return redirect()->route('users.resortStaffs')->with('success', 'User created successfully.');
@@ -294,5 +296,103 @@ class UserController extends Controller
     public function requestSupplies()
     {
         return view('Users.requestSupply');
+    }
+
+    public function storeRequest(Request $request)
+    {
+        $request->validate([
+            'item_name' => 'required|string|max:255',
+            'quantity' => 'required|integer|min:1',
+            'reason' => 'required|string|max:1000',
+        ]);
+
+        SupplyRequest::create([
+            'user_id' => auth()->id(),
+            'item_name' => $request->item_name,
+            'quantity' => $request->quantity,
+            'reason' => $request->reason,
+            'status' => 'pending',
+        ]);
+
+        return redirect()->back()->with('success', 'Supply request submitted successfully.');
+    }
+
+    public function approveRequest($id)
+    {
+        if (!in_array(auth()->user()->role, ['admin', 'manager'])) {
+            abort(403);
+        }
+
+        $request = SupplyRequest::findOrFail($id);
+        $request->status = 'approved';
+        $request->save();
+
+        return redirect()->back()->with('success', 'Request approved.');
+    }
+
+    public function rejectRequest($id)
+    {
+        if (!in_array(auth()->user()->role, ['admin', 'manager'])) {
+            abort(403);
+        }
+
+        $request = SupplyRequest::findOrFail($id);
+        $request->status = 'rejected';
+        $request->save();
+
+        return redirect()->back()->with('success', 'Request rejected.');
+    }
+
+    public function returnSupplies(Request $request)
+    {
+        $query = IssuedSupply::where('is_returned', false);
+
+        // If not admin or manager, only show user's own supplies
+        if (!in_array(auth()->user()->role, ['admin', 'manager'])) {
+            $query->where('user_id', auth()->id());
+        }
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('quantity', 'like', "%{$search}%")
+                ->orWhereHas('supply', function($sq) use ($search) {
+                    $sq->where('name', 'like', "%{$search}%");
+                })
+                ->orWhereHas('user', function($uq) use ($search) {
+                    $uq->where('first_name', 'like', "%{$search}%")
+                    ->orWhere('last_name', 'like', "%{$search}%");
+                });
+            });
+        }
+
+        $issuedSupplies = $query->with(['supply', 'user'])->get();
+
+        return view('Users.return', compact('issuedSupplies'));
+    }
+
+    public function returnSupply(Request $request, $id)
+    {
+        $issued = IssuedSupply::findOrFail($id);
+
+        if ($issued->is_returned) {
+            return back()->withErrors(['error' => 'Already returned.']);
+        }
+
+        // Check permission: admin/manager can return any, others only their own
+        if (!in_array(auth()->user()->role, ['admin', 'manager']) && $issued->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        // Mark as returned
+        $issued->is_returned = true;
+        $issued->save();
+
+        // Add back to inventory
+        $supply = $issued->supply;
+        $supply->quantity += $issued->quantity;
+        $supply->save();
+
+        return redirect()->route('users.returnSupplies')->with('success', 'Supply returned.');
     }
 }

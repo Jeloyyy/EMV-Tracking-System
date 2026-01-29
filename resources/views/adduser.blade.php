@@ -5,7 +5,7 @@
     <div class="register-card" style="margin-top: 20px;">
         <marquee scrollamount="20" direction="right" width="100%"><h4 class="register-title">ADD USER HERE!!!</h4></marquee>
 
-        <form method="POST" action="{{ route('users.resortStaffs') }}">
+        <form method="POST" action="{{ route('users.store') }}">
             @csrf
 
             <div class="form-group">

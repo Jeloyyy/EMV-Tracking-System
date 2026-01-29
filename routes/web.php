@@ -51,5 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/issuance', [UserController::class, 'issuance'])->name('users.issuance');
     Route::post('/issuance', [UserController::class, 'storeIssuance'])->name('issuance.store');
 
+    Route::get('/return-supplies', [UserController::class, 'returnSupplies'])->name('users.returnSupplies');
+    Route::post('/return-supplies/{id}', [UserController::class, 'returnSupply'])->name('users.returnSupply');
+
     Route::get('/request-supplies', [UserController::class, 'requestSupplies'])->name('supply.request');
+    Route::post('/request-supplies', [UserController::class, 'storeRequest'])->name('supply.request.submit');
+    Route::post('/supply-requests/{id}/approve', [UserController::class, 'approveRequest'])->name('supply.request.approve');
+    Route::post('/supply-requests/{id}/reject', [UserController::class, 'rejectRequest'])->name('supply.request.reject');
 });

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>@yield('title','E.M. Villanueva Resort')</title>
     <link rel="manifest" href="/manifest.json">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 
@@ -46,6 +48,7 @@
                 navigator.serviceWorker.register('/service-worker.js');
             }
         });
-    </script>   
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
