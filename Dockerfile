@@ -19,9 +19,13 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Clone from GitHub
-RUN git clone https://github.com/Jeloyyy/EMV-Tracking-System . && \
-    git checkout main || git checkout master
+# Clone from GitHub into a temporary folder, then copy into /var/www
+# This avoids "destination path '.' already exists and is not an empty directory" errors
+RUN git clone https://github.com/Jeloyyy/EMV-Tracking-System /tmp/repo && \
+    cd /tmp/repo && git checkout main || true && \
+    rm -rf /var/www/* /var/www/.[!.]* /var/www/..?* || true && \
+    cp -a /tmp/repo/. /var/www && \
+    rm -rf /tmp/repo
 
 # Install PHP dependencies
 RUN composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
