@@ -16,7 +16,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (config('database.default') === 'sqlite' && app()->environment('local')) {
-            $dbPath = base_path(config('database.connections.sqlite.database'));
+            $dbFile = config('database.connections.sqlite.database');
+
+            // If the configured path is absolute, use it; otherwise prefix with base_path()
+            $isWindowsAbsolute = preg_match('/^[A-Za-z]:\\\\/', $dbFile ?? '');
+            $isUnixAbsolute = isset($dbFile[0]) && ($dbFile[0] === '/');
+
+            if ($isWindowsAbsolute || $isUnixAbsolute) {
+                $dbPath = $dbFile;
+            } else {
+                $dbPath = base_path($dbFile);
+            }
+
+            // Ensure directory exists
+            $dir = dirname($dbPath);
+            if (!File::exists($dir)) {
+                File::makeDirectory($dir, 0755, true);
+            }
 
             if (!File::exists($dbPath)) {
                 File::put($dbPath, '');
