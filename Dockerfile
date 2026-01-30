@@ -19,13 +19,14 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Optimize build by copying composer files first
-COPY composer.json composer.lock ./
-RUN composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader || true
+# Clone from GitHub
+RUN git clone https://github.com/Jeloyyy/EMV-Tracking-System . && \
+    git checkout main || git checkout master
 
-# Copy the rest of the application
-COPY . .
+# Install PHP dependencies
+RUN composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
 
+# Set permissions
 RUN chown -R www-data:www-data /var/www
 
 EXPOSE 9000
