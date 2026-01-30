@@ -9,9 +9,7 @@ services:
     container_name: jag_app
     restart: unless-stopped
     working_dir: /var/www
-    volumes:
-      - vendor:/var/www/vendor
-      - node_modules:/var/www/node_modules
+    # no host or named mounts for /var/www so the image's cloned code is used
     depends_on:
       - db
     environment:
@@ -27,7 +25,6 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - app
@@ -52,16 +49,11 @@ services:
     image: node:18
     container_name: jag_node
     working_dir: /var/www
-    volumes:
-      - ./:/var/www
-      - node_modules:/var/www/node_modules
     command: ["sh", "-c", "npm install && npm run dev"]
     networks:
       - jagnet
 
 volumes:
-  vendor:
-  node_modules:
   dbdata:
 
 networks:
