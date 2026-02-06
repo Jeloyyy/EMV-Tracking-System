@@ -27,7 +27,7 @@
                     <td>{{ $item->supply->name }}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>{{ $item->user->full_name }}</td>
-                    <td>{{ $item->date_issued->format('Y-m-d') }}</td>
+                    <td>{{ $item->date_issued }}</td>
                     <td>
                         <form action="{{ route('users.returnSupply', $item->id) }}" method="POST" class="d-inline">
                             @csrf

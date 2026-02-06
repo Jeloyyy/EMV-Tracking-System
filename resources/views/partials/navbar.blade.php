@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="navbar-left">
         <button class="sidebar-toggle" id="sidebarToggle">☰</button>
-        <div class="navbar-brand">EMV Resort Management</div>
+        <div class="navbar-brand">E.M. Villanueva Resort</div>
     </div>
     <div class="navbar-menu">
         <button class="menu-toggle" id="menuToggle">Menu ▾</button>

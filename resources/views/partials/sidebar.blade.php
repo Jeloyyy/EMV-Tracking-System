@@ -15,61 +15,49 @@
             'roles' => ['admin','manager','supervisor','user']
         ],
         [
-            'title' => 'TABLES',
-            'type' => 'group',
-            'items' => [
-                [
-                    'title' => 'Resort Staffs',
-                    'route' => 'users.resortStaffsTable',
-                    'roles' => ['supervisor','user']
-                ],
-                [
-                    'title' => 'Users',
-                    'route' => 'users.resortStaffs',
-                    'roles' => ['admin','manager']
-                ],
-                [
-                    'title' => 'Supplies',
-                    'route' => 'users.supplies',
-                    'roles' => ['admin','manager']
-                ],
-                [
-                    'title' => 'Issued Supplies',
-                    'route' => 'users.issuedSupplies',
-                    'roles' => ['admin','manager']
-                ],
-                [
-                    'title' => 'Return Supplies',
-                    'route' => 'users.returnSupplies',
-                    'roles' => ['admin','manager','user','supervisor']
-                ]
-            ]
+            'title' => 'Resort Staffs',
+            'route' => 'users.resortStaffsTable',
+            'roles' => ['supervisor','user']
         ],
         [
-            'title' => 'FORMS',
-            'type' => 'group',
-            'items' => [
-                [
-                    'title' => 'Add User',
-                    'route' => 'users.create',
-                    'roles' => ['admin','manager']
-                ],
-                [
-                    'title' => 'Add Supplies',
-                    'route' => 'users.addSupplies',
-                    'roles' => ['admin','manager','supervisor']
-                ],
-                [
-                    'title' => 'Issuance',
-                    'route' => 'users.issuance',
-                    'roles' => ['admin','manager']
-                ],
-            ]
+            'title' => 'Users',
+            'route' => 'users.resortStaffs',
+            'roles' => ['admin','manager']
         ],
         [
-                    'title' => 'Request Supplies',
-                    'route' => 'supply.request',
-                    'roles' => ['supervisor','user']
+            'title' => 'Supplies',
+            'route' => 'users.supplies',
+            'roles' => ['admin','manager']
+        ],
+        [
+            'title' => 'Issued Supplies',
+            'route' => 'users.issuedSupplies',
+            'roles' => ['admin','manager']
+        ],
+        [
+            'title' => 'Return Supplies',
+            'route' => 'users.returnSupplies',
+            'roles' => ['admin','manager','user','supervisor']
+        ],
+        [
+            'title' => 'Add User',
+            'route' => 'users.create',
+            'roles' => ['admin','manager']
+        ],
+        [
+            'title' => 'Add Supplies',
+            'route' => 'users.addSupplies',
+            'roles' => ['admin','manager','supervisor']
+        ],
+        [
+            'title' => 'Issuance',
+            'route' => 'users.issuance',
+            'roles' => ['admin','manager']
+        ],
+        [
+            'title' => 'Request Supplies',
+            'route' => 'supply.request',
+            'roles' => ['admin','supervisor','user']
         ],
         [
             'title' => 'About',

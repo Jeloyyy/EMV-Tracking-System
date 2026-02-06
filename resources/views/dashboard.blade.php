@@ -8,11 +8,10 @@
         <h1 id="welcome-msg">Welcome, {{ Auth::user()->full_name }}</h1>
     @endif
 
-    <!-- Dashboard Cards -->
     <div class="dashboard-container">
         @if(auth()->user()->role === 'admin' || auth()->user()->role === 'manager')
         <div>
-            <div class="dashboard-card bg-light">
+            <div class="dashboard-card bg-light" onclick="window.location='{{ route('users.resortStaffsTable') }}'">
                 <div class="text-center">
                     <i class="bi bi-people-fill fs-2 text-primary mb-2"></i>
                     <h4 class="mb-0">{{ \App\Models\User::count() }}</h4>
@@ -22,7 +21,7 @@
         </div>
         @endif
         <div>
-            <div class="dashboard-card bg-light">
+            <div class="dashboard-card bg-light" onclick="window.location='{{ route('users.supplies') }}'">
                 <div class="text-center">
                     <i class="bi bi-box-seam fs-2 text-success mb-2"></i>
                     <h4 class="mb-0">{{ $supplies->count() }}</h4>
@@ -52,10 +51,8 @@
         @endif
     </div>
 
-    <!-- Supplies Overview and Pending Requests -->
     @if(auth()->user()->role === 'admin' || auth()->user()->role === 'manager')
     <div class="d-flex gap-4 mb-4">
-        <!-- Supplies Overview -->
         <div class="flex-fill">
             @if($supplies->count() > 0)
                 <div class="dash-overview" style="cursor: pointer;" onclick="window.location='{{ route('users.supplies') }}'">
@@ -91,8 +88,6 @@
                 </div>
             @endif
         </div>
-
-        <!-- Pending Requests -->
         <div class="flex-fill">
             @if($pendingRequests->count() > 0)
                 <div class="dash-overview" style="background-color: #fff3cd; border: 1px solid #ffeaa7;">
@@ -145,7 +140,6 @@
         </div>
     </div>
     @else
-    <!-- User Supplies Overview Only -->
     <div class="mb-4">
         @if($supplies->count() > 0)
             <div class="dash-overview" style="cursor: pointer;" onclick="window.location='{{ route('users.supplies') }}'">
